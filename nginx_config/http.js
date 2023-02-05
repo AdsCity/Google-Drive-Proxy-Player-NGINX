@@ -1,5 +1,5 @@
 
-	function ord( string ) {
+        function ord( string ) {
 
 
   var str = string,
@@ -21,7 +21,7 @@
 
 function chr( codePt ) {
 
-  if ( codePt > 0xFFFF ) { 
+  if ( codePt > 0xFFFF ) {
     codePt -= 0x10000;
     return String.fromCharCode( 0xD800 + ( codePt >> 10 ), 0xDC00 + ( codePt & 0x3FF ) );
   }
@@ -30,15 +30,15 @@ function chr( codePt ) {
 
 function HexToString(str1)
  {
-	var hex  = str1.toString();
-	var str = '';
-	for (var n = 0; n < hex.length; n += 2) {
-		str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
-	}
-	return str;
+        var hex  = str1.toString();
+        var str = '';
+        for (var n = 0; n < hex.length; n += 2) {
+                str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+        }
+        return str;
  }
- 
- 
+
+
  function StringToUnicodez(theString) {
   var unicodeString = '';
   for (var i=0; i < theString.length; i++) {
@@ -53,12 +53,12 @@ function HexToString(str1)
 }
 
 function unicodeToChar(text) {
-   return text.replace(/\\u[\dA-F]{4}/gi, 
+   return text.replace(/\\u[\dA-F]{4}/gi,
           function (match) {
                return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
           });
 }
- 
+
 
 function rc4( pwd, data ) {
   var key = [],
@@ -75,7 +75,7 @@ function rc4( pwd, data ) {
     box[i] = i;
   }
 
-  
+
 
   for ( j = i = 0; i < 256; ++i ) {
         j = ( j + box[i] + key[i] ) % 256;
@@ -102,19 +102,20 @@ function replaceAll(string, search, replace) {
   return string.split(search).join(replace);
 }
 
- 
+
 function urldecode(str) {
-	
+
     return decodeURIComponent(str);
 }
 
 function encodez(r) {
-	return StringToUnicodez(rc4("xx0x",replaceAll(r.args.url,"!","&")));
+        return StringToUnicodez(rc4("xx0x",replaceAll(r.variables.args,"!","&")));
 }
 
 
 function decodez(r) {
-	 return rc4("xx0x",unicodeToChar(replaceAll(r.args.video,"!",'\\u00')));
+
+         return rc4("xx0x",unicodeToChar(replaceAll(r.args.video,"!",'\\u00')));
 }
 
 export default {decodez,encodez};
